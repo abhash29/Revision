@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" placeholder="first number" id="first"><br>
+    <input type="text" placeholder="second number" id="second"><br>
+    <button onclick="calSum()">Sum</button>
+    <div id="ans"></div>
+
+    <script>
+        function calSum(){
+            const a = Number(document.getElementById("first").value);
+            const b = Number(document.getElementById("second").value);
+            
+            fetch(`http://localhost:3000/sum?a=${a}&b=${b}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("ans").innerHTML=data.sum;
+            })
+            .catch(err => console.log(err));
+        }
+    </script>
+</body>
+</html>
