@@ -1,0 +1,28 @@
+<body>
+    <input type="text" placeholder="first number" id="first"><br>
+    <input type="text" placeholder="second number" id="second" onclick="debouncePopulateDIv()"><br>
+    <div id="ans"></div>
+
+    <script>
+        //Concept of Debounce
+        let timeout;
+        function debouncePopulateDIv(){
+            //delay the call to calSUm until ive not been called for 100ms
+            //what is happening here, if the debouncePopulate function is not called for 100ms then call the calSUm fun
+            //if debouncePopulate fun is called then reset the timer
+            //It is just the search box of amazon app where after typing few keywords if we stop then it will give text suggestion
+            clearTimeout(timeout);
+            timeout = setTimeout(function (){
+                calSum();
+            }, 1000)
+        }
+        async function calSum(){
+            const a = Number(document.getElementById("first").value);
+            const b = Number(document.getElementById("second").value);
+            
+            const response = await fetch(`http://localhost:3000/sum?a=${a}&b=${b}`);
+            const data = await response.json();
+            document.getElementById("ans").innerHTML = data.sum;
+        }
+    </script>
+</body>
