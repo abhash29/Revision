@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Working on Todo Application</h1>
+    <input type="text" placeholder="Work" id="work">
+    <input type="text" placeholder="Time" id="time">
+    <button onclick="addTodo()">Add to TODO</button>
+    <br>
+    <br>
+    <br>
+    <div>
+        <div id="task"></div>
+    </div>
+
+    <script>
+        
+        const todo = [
+            {
+                work: "Go to gym",
+                time: "10-12"
+            },
+             {
+                work: "Go to library",
+                time: "12-2"
+            },
+             {
+                work: "Go to ground",
+                time: "2-5"
+            },
+        ]
+
+        const task = document.getElementById("task");
+function renderTodos() {
+    task.innerHTML = "";
+
+    for (let i = 0; i < todo.length; i++) {
+        const div = document.createElement("div");
+        div.textContent = `${i + 1}. ${todo[i].work} at ${todo[i].time}`;
+        task.appendChild(div);
+    }
+}
+        
+        function addTodo(){
+            const work = document.getElementById("work").value;
+            const time = document.getElementById("time").value;
+            todo.push({
+                work: work,
+                time: time,
+            });
+            console.log(todo);
+            renderTodos();
+        }
+
+        
+        for(let i=0; i<todo.length; i++){
+            const val = document.createElement("div");
+            val.innerHTML = ` ${i} -> ${todo[i].work} at ${todo[i].time}`;
+            task.appendChild(val);
+        }   
+        
+    </script>
+</body>
+</html>
